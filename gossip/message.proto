@@ -131,6 +131,12 @@ message GossipMessage {
         // Encapsulates private data used to distribute
         // private rwset after the endorsement
         PrivateDataMessage private_data = 25;
+
+        //  Used to ask from a remote peer a transaction
+        RemoteTxRequest tx_request = 26;
+
+        // Used to send a transaction to a remote peer
+        RemoteTxResponse tx_response = 27;
     }
 }
 
@@ -323,6 +329,18 @@ message RemoteStateRequest {
 // to a remote peer
 message RemoteStateResponse {
     repeated Payload payloads = 1;
+}
+
+// RemoteTxRequest is used to ask a transaction
+// from a remote peer
+message RemoteTxRequest {
+    string tx_id = 1;
+}
+
+// RemoteTxResponse is used to send a transaction
+// to a remote peer
+message RemoteTxResponse {
+    Envelope envelope = 1;
 }
 
 // RemotePrivateDataRequest message used to request
